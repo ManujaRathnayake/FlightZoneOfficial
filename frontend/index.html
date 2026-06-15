@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flight Zone - Aviation Portal</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    
+    <link id="favicon" rel="icon" type="image/jpeg" href="/admins/logo.jpg" />
+
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const img = new Image();
+        img.src = '/admins/logo.jpg'; // ඔයාගේ පරණ කොටු ලෝගෝ එකේ පාර
+        
+        img.onload = function() {
+          // 1. මතකයේ (Memory) තාවකාලික Canvas එකක් හදනවා
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          
+          // Icon එකකට හරියන සයිස් එකක් (32x32) දෙනවා
+          canvas.width = 32;
+          canvas.height = 32;
+          
+          // 2. 🪄 පින්තූරය රවුමකට කපන මැජික් එක (Clipping)
+          ctx.beginPath();
+          ctx.arc(16, 16, 16, 0, Math.PI * 2);
+          ctx.closePath();
+          ctx.clip();
+          
+          // 3. රවුම ඇතුළට කොටු පින්තූරය ඇඳලා පිරවනවා
+          ctx.drawImage(img, 0, 0, 32, 32);
+          
+          // 4. රවුම් කරපු පින්තූරය transparent PNG ලින්ක් එකක් බවට හරවනවා
+          const roundDataURL = canvas.toDataURL('image/png');
+          
+          // 5. HTML එකේ උඩ තියෙන Favicon ලින්ක් එකට මේ අලුත් රවුම් ලින්ක් එක සෙට් කරනවා
+          document.getElementById('favicon').href = roundDataURL;
+        };
+      });
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
