@@ -85,7 +85,7 @@ export default function SubmitCapture() {
       }
 
       // 📡 2. ලැබුණු ලින්ක්ස් ටික අපේ බැක්එන්ඩ් එකට (server.js) යවනවා ඩේටාබේස් සේව් කරන්න
-      const backendRes = await fetch('http://localhost:5000/api/spotters/submit', {
+      const backendRes = await fetch('https://flight-zone-official.vercel.app/api/spotters/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

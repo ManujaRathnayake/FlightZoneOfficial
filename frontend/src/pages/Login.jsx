@@ -11,7 +11,7 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
+      const res = await fetch('https://flight-zone-official.vercel.app/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -36,7 +36,7 @@ export default function Login() {
 
     try {
       // 🔄 මේ ටෝකන් එක අපි බැක්එන්ඩ් (Node.js) එකට යවනවා ව්‍යුත්පන්න කරන්න
-      const res = await fetch('http://localhost:5000/api/auth/google-login', {
+      const res = await fetch('https://flight-zone-official.vercel.app/api/auth/google-login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token })

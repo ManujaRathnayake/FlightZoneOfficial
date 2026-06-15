@@ -94,7 +94,7 @@ export default function CareerGuides() {
   ];
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/careers')
+    fetch('https://flight-zone-official.vercel.app/api/careers')
       .then(res => res.json())
       .then(data => {
         const main = data.filter(c => c.category === 'main');

@@ -22,7 +22,7 @@ export default function MyProfile() {
     setProfilePic(userObj.profilePic || ''); // දැනට තියෙන පින්තූරය ලෝඩ් කළා
 
     // යූසර්ගේ Pending Captures ටික ලෝඩ් කිරීම
-    fetch(`http://localhost:5000/api/spotters/my-pending/${userObj.name}`)
+    fetch(`https://flight-zone-official.vercel.app/api/spotters/my-pending/${userObj.name}`)
       .then(res => res.json())
       .then(data => {
         setPendingCaptures(data);
@@ -59,7 +59,7 @@ export default function MyProfile() {
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:5000/api/auth/update-profile/${user.id}`, {
+      const res = await fetch(`https://flight-zone-official.vercel.app/api/auth/update-profile/${user.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, profilePic }) 

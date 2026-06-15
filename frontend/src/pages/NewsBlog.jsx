@@ -8,7 +8,7 @@ export default function NewsBlog() {
 
   useEffect(() => {
     // 📡 බැක්එන්ඩ් එකෙන් එන සේරම නිව්ස් 50ම (Google News RSS + Local Backup) ඇදලා ගන්නවා
-    fetch('http://localhost:5000/api/aviation-news')
+    fetch('https://flight-zone-official.vercel.app/api/aviation-news')
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {

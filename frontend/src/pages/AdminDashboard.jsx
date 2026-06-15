@@ -48,17 +48,17 @@ export default function AdminDashboard() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const resInq = await fetch('http://localhost:5000/api/inquiries');
+      const resInq = await fetch('https://flight-zone-official.vercel.app/api/inquiries');
       setInquiries(await resInq.json());
 
-      const resUsers = await fetch('http://localhost:5000/api/auth/users');
+      const resUsers = await fetch('https://flight-zone-official.vercel.app/api/auth/users');
       setUsers(await resUsers.json());
 
-      const resSpot = await fetch('http://localhost:5000/api/spotters/all');
+      const resSpot = await fetch('https://flight-zone-official.vercel.app/api/spotters/all');
       setSpotters(await resSpot.json());
 
       // 👑 ඩිරෙක්ටරි එකේ ලයිව් යානා ටික බැක්එන්ඩ් එකෙන් ඇදලා ගන්නවා මචං
-      const resAir = await fetch('http://localhost:5000/api/aircrafts');
+      const resAir = await fetch('https://flight-zone-official.vercel.app/api/aircrafts');
       setAircrafts(await resAir.json());
 
       setLoading(false);
@@ -66,14 +66,14 @@ export default function AdminDashboard() {
   };
 
   const handleApproveInquiry = async (id) => {
-    await fetch(`http://localhost:5000/api/inquiries/${id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: 'Approved' }) });
+    await fetch(`https://flight-zone-official.vercel.app/api/inquiries/${id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: 'Approved' }) });
     showCustomToast("📝 Inquiry Approved Successfully!", "success");
     fetchData();
   };
 
   const handleDeleteInquiry = async (id) => {
     if (window.confirm('Delete?')) { 
-      await fetch(`http://localhost:5000/api/inquiries/${id}`, { method: 'DELETE' }); 
+      await fetch(`https://flight-zone-official.vercel.app/api/inquiries/${id}`, { method: 'DELETE' }); 
       showCustomToast("🗑️ Inquiry Deleted Successfully!", "warn");
       fetchData(); 
     }
@@ -89,7 +89,7 @@ export default function AdminDashboard() {
 
     if (secretPassword === 'Harrypottersrilankanandemirates#1233') {
       try {
-        const res = await fetch(`http://localhost:5000/api/auth/users/${userId}/make-admin`, { method: 'PUT' });
+        const res = await fetch(`https://flight-zone-official.vercel.app/api/auth/users/${userId}/make-admin`, { method: 'PUT' });
         if (res.ok) {
           showCustomToast(`🎉 Success! ${userName} is now an Official Admin!`, "success");
           fetchData();
@@ -106,7 +106,7 @@ export default function AdminDashboard() {
   };
 
   const handleApproveSpotter = async (id) => {
-    await fetch(`http://localhost:5000/api/spotters/${id}/approve`, { method: 'PUT' });
+    await fetch(`https://flight-zone-official.vercel.app/api/spotters/${id}/approve`, { method: 'PUT' });
     showCustomToast('✈️ Capture Approved Live on Flight Zone!', "success");
     setSelectedPost(null);
     fetchData();
@@ -114,7 +114,7 @@ export default function AdminDashboard() {
 
   const handleDeleteSpotter = async (id) => {
     if (window.confirm('Delete this capture?')) {
-      await fetch(`http://localhost:5000/api/spotters/${id}`, { method: 'DELETE' });
+      await fetch(`https://flight-zone-official.vercel.app/api/spotters/${id}`, { method: 'DELETE' });
       showCustomToast('🗑️ Capture Deleted Successfully!', "warn");
       setSelectedPost(null);
       fetchData();
@@ -132,8 +132,8 @@ export default function AdminDashboard() {
     if (imageFile) data.append('image', imageFile); // පින්තූරය යන්නේ මෙතනින් 📸
 
     const url = isEditing 
-      ? `http://localhost:5000/api/aircrafts/edit/${currentPlaneId}`
-      : 'http://localhost:5000/api/aircrafts/add';
+      ? `https://flight-zone-official.vercel.app/api/aircrafts/edit/${currentPlaneId}`
+      : 'https://flight-zone-official.vercel.app/api/aircrafts/add';
 
     const method = isEditing ? 'PUT' : 'POST';
 
@@ -158,7 +158,7 @@ export default function AdminDashboard() {
   // 👑 DELETE AIRCRAFT FROM DIRECTORY
   const handleDeleteAircraft = async (id) => {
     if (window.confirm("Are you sure you want to permanently delete this aircraft from Global Directory?")) {
-      await fetch(`http://localhost:5000/api/aircrafts/${id}`, { method: 'DELETE' });
+      await fetch(`https://flight-zone-official.vercel.app/api/aircrafts/${id}`, { method: 'DELETE' });
       showCustomToast("🗑️ Aircraft Removed Successfully!", "warn");
       fetchData();
     }

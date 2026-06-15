@@ -58,7 +58,7 @@ export default function Home() {
 
   // 1. ඩේටාබේස් එකෙන් Approved Spotter Packages ලයිව් ලබාගැනීම
   useEffect(() => {
-    fetch('http://localhost:5000/api/spotters/approved')
+    fetch('https://flight-zone-official.vercel.app/api/spotters/approved')
       .then(res => res.json())
       .then(data => setSpotterImages(data))
       .catch(err => console.error("Error fetching spotter images:", err));
@@ -67,7 +67,7 @@ export default function Home() {
   // 2. Live Flight Data Logic
   useEffect(() => {
     setLoadingFlights(true);
-    fetch(`http://localhost:5000/api/flights/${activeAirport}`)
+    fetch(`https://flight-zone-official.vercel.app/api/flights/${activeAirport}`)
       .then(res => res.json())
       .then(data => {
         const filtered = data.filter(f => f.type === activeTab);
@@ -128,7 +128,7 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/inquiries', {
+      const res = await fetch('https://flight-zone-official.vercel.app/api/inquiries', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
