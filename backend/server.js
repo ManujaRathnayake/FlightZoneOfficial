@@ -18,7 +18,15 @@ dotenv.config();
 connectDB();
 
 const app = express();
-app.use(cors());
+
+// ==========================================================
+// 👑 CORS PRODUCTION CONFIGURATION (FIXED FOR VERCEL & LIVE DEPLOY)
+// ==========================================================
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
@@ -36,7 +44,7 @@ cloudinary.config({
 const aircraftStorage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'flightzone_aircrafts', // Cloudinary එකේ හැදෙන Folder එකේ นම
+    folder: 'flightzone_aircrafts', // Cloudinary එකේ හැදෙන Folder එකේ නම
     allowed_formats: ['jpg', 'png', 'jpeg', 'webp'],
   },
 });
